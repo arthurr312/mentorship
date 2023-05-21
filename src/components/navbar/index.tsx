@@ -5,7 +5,7 @@ export function NavBar() {
     "text-white text-lg hover:text-[#d9d9d9] hover:duration-300";
   return (
     <div className="flex justify-between items-center bg-navbar-background p-2">
-      <h1 className="text-white text-lg">E-commerce</h1>
+      <h1 className="text-white text-lg">eCommerce</h1>
       <div className="flex gap-4 p-2">
         <Link href="/produto">
           <h1 className={textStyle}>Listar</h1>
