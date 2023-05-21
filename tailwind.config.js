@@ -14,6 +14,7 @@ module.exports = {
       },
       colors: {
         "navbar-background": "#14181c",
+        "black": "#000",
         "dark-blue": "#000026",
         white: "#fff",
         "input-border-color": "#f2f3f4",
