@@ -13,7 +13,7 @@ export function ProductTableColumns({ columns }: IProductTableColumns) {
         ))}
 
         <th scope="col" className="px-6 py-3 text-center">
-          Action
+          Ações
         </th>
       </tr>
     </thead>

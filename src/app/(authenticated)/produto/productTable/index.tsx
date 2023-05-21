@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { BsPencil } from "react-icons/bs";
 import { ProductTableColumns } from "../productTableColumns";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 interface Product {
-  nome: string;
-  idade: number;
-  genero: string;
-  pais: string;
-  cidade: string;
+  name: string;
+  price: number;
+  category: string;
+  quantity: number;
 }
 
 interface IProductTable {
@@ -29,19 +29,16 @@ export function ProductTable({ columns, rows, path }: IProductTable) {
             >
               <>
                 <th className="px-6 py-4 font-medium text-center whitespace-nowrap">
-                  {item.nome}
+                  {item.name}
                 </th>
                 <th className="px-6 py-4 font-medium text-center whitespace-nowrap">
-                  {item.idade}
+                  {formatCurrency(item.price)}
                 </th>
                 <th className="px-6 py-4 font-medium text-center whitespace-nowrap">
-                  {item.genero}
+                  {item.category}
                 </th>
                 <th className="px-6 py-4 font-medium text-center whitespace-nowrap">
-                  {item.pais}
-                </th>
-                <th className="px-6 py-4 font-medium text-center whitespace-nowrap">
-                  {item.cidade}
+                  {item.quantity}
                 </th>
                 <td className="px-6 py-4 flex justify-center">
                   <Link href={`${path}`}>

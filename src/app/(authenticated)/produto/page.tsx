@@ -1,22 +1,25 @@
 import { ProductTable } from "./productTable";
 
 export default function ProductListing() {
-  const columnsName = ["Nome", "Idade", "Gênero", "País", "Cidade"];
+  const columnsName = ["Nome", "Preço", "Categoria", "Quantidade"];
   const rows = [
     {
-      nome: "Arthur",
-      idade: 20,
-      genero: "M",
-      pais: "Brasil",
-      cidade: "Santa Cruz",
+      name: "Camisa",
+      price: 20,
+      category: "Roupas",
+      quantity: 30,
     },
     {
-      nome: "Arthuro",
-      idade: 20,
-      genero: "M",
-      pais: "Brasil",
-      cidade: "Santa Cruz",
+      name: "Notebook",
+      price: 5000,
+      category: "Eletrônicos",
+      quantity: 30,
     },
   ];
-  return <ProductTable columns={columnsName} path="" rows={rows} />;
+  return (
+    <div className="flex flex-col justify-center items-center gap-4">
+      <h1 className="text-center text-2xl">Listagem de produtos</h1>
+      <ProductTable columns={columnsName} path="" rows={rows} />
+    </div>
+  );
 }
