@@ -14,7 +14,7 @@ module.exports = {
       },
       colors: {
         "navbar-background": "#14181c",
-        "black": "#000",
+        black: "#000",
         "dark-blue": "#000026",
         white: "#fff",
         "input-border-color": "#f2f3f4",
@@ -27,6 +27,10 @@ module.exports = {
           200: "#ccc7be",
           400: "#99948f",
           600: "#66635f",
+        },
+        "sign-in-button": {
+          default: "#0d1117",
+          dark: "#010409",
         },
       },
     },

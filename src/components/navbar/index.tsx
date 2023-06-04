@@ -1,6 +1,11 @@
+'use client'
 import Link from "next/link";
 
-export function NavBar() {
+interface NavbarProps {
+  logout: () => void;
+} 
+
+export function NavBar({logout}: NavbarProps) {
   const textStyle =
     "text-white text-lg hover:text-[#d9d9d9] hover:duration-300";
   return (
@@ -13,7 +18,7 @@ export function NavBar() {
         <Link href="/produto/cadastrar">
           <h1 className={textStyle}>Cadastrar</h1>
         </Link>
-        <Link href="/login">
+        <Link href="/login" onClick={logout}>
           <h1 className={textStyle}>Sair</h1>
         </Link>
       </div>

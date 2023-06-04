@@ -1,0 +1,82 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // uses connection pooling
+}
+
+model Account {
+  id                Int     @id @default(autoincrement())
+  userId            Int     @map(name: "user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map(name: "provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index(userId)
+  @@map(name: "accounts")
+}
+
+model Session {
+  id           Int      @id @default(autoincrement())
+  sessionToken String   @unique @map(name: "session_token")
+  userId       Int      @map(name: "user_id")
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index(userId)
+  @@map(name: "sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map(name: "verification_tokens")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  email         String?   @unique
+  name          String?
+  isAdmin       Boolean   @default(false) @map(name: "is_admin")
+  emailVerified DateTime? @map(name: "email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  products      Product[]
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+
+  @@map(name: "users")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map(name: "user_id")
+  name      String
+  price     Float
+  category  String
+  quantity  Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "products")
+}

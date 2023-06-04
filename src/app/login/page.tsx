@@ -14,39 +14,15 @@ export default function LoginPage() {
   return (
     <div className="flex justify-between items-center w-4/5 m-auto h-screen">
       <div>
-      <Image
-        width="500"
-        height="500"
-        alt="Imagem de mulher com carrinho de compras"
-        src={LoginPic}
-      />
+        <Image
+          width="500"
+          height="500"
+          alt="Imagem de mulher com carrinho de compras"
+          src={LoginPic}
+        />
       </div>
       <div>
-        <div className="w-1/2 flex justify-center items-center m-auto p-2 gap-2">
-          <button
-            onClick={() => setSelectedButton("login")}
-            className={
-              selectedButton === "login" ? selectedStyle : unselectedStyle
-            }
-          >
-            Login
-          </button>
-          <button
-            onClick={() => setSelectedButton("register")}
-            className={
-              selectedButton !== "login" ? selectedStyle : unselectedStyle
-            }
-          >
-            Cadastrar
-          </button>
-        </div>
-        {selectedButton === "login" ? (
-          <LoginForm />
-        ) : (
-          <>
-            <RegisteringForm />
-          </>
-        )}
+        <LoginForm />
       </div>
     </div>
   );

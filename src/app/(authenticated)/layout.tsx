@@ -1,6 +1,8 @@
+'use client'
 import { NavBar } from "@/components/navbar";
 import { poppins } from "@/font/Poppins";
 import "../globals.css";
+import { signOut } from "next-auth/react";
 
 export const metadata = {
   title: "Create Next App",
@@ -12,10 +14,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  async function logout() {
+    try {
+      await signOut();
+    } catch (error) {
+      // display error message to user
+      console.error("Something went wrong with your login.");
+    }
+  }
   return (
     <html lang="en">
       <body className={`${poppins.className} bg-gray-100`}>
-        <NavBar />
+        <NavBar logout={logout} />
         {children}
       </body>
     </html>
